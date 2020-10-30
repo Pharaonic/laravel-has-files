@@ -6,11 +6,37 @@ use Exception;
 
 trait HasFiles
 {
+    /**
+     * Files Atrributes on Save/Create
+     *
+     * @var array
+     */
+    protected static $filesAttributesAction = [];
+
     protected static function bootHasFiles()
     {
         $attrs = get_class_vars(self::class);
         $attrs = array_merge(config('Pharaonic.files.fields', []), $attrs['filesAttributes'] ?? []);
 
+        // Created
+        self::creating(function ($model) use ($attrs) {
+            foreach ($model->getAttributes() as $name => $value) {
+                if (in_array($name, $attrs)) {
+                    self::$filesAttributesAction[$name] = $value;
+                    unset($model->{$name});
+                }
+            }
+        });
+
+        // Created
+        self::created(function ($model) {
+            if (count(self::$filesAttributesAction) > 0) {
+                foreach (self::$filesAttributesAction as $name => $file)
+                    $model->{$name} = $model->_setFileAttribute($name, $file);
+            }
+        });
+
+        // Retrieving
         self::retrieved(function ($model) use ($attrs) {
             try {
                 foreach ($attrs as $attr) $model->addGetterAttribute($attr, '_getFileAttribute');
@@ -20,7 +46,8 @@ trait HasFiles
             }
         });
 
-        // foreach($attrs as $attr)
+
+        // Deleting
         self::deleting(function ($model) {
             $model->clearFiles();
         });
@@ -51,13 +78,17 @@ trait HasFiles
 
                 $newFile = upload($value, $options);
                 $file->update(['upload_id' => $newFile->id]);
+
+                return $file;
             } else {
                 $file = upload($value, $this->filesOptions[$key] ?? []);
 
-                return $this->files()->create([
+                $this->files()->create([
                     'field'     => $key,
                     'upload_id' => $file->id,
                 ]);
+
+                return $file;
             }
         }
 
