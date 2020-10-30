@@ -89,11 +89,19 @@ class Person extends Model
 #### How to use
 
 ```php
+// Retrive Person
 $person = Person::find(1); 		        // Model
-
 $person->passport = $request->myFile;   // Request Input File + Uploading it
-
 echo $person->passport->url; 	        // Getting passport file URL
+
+// Create Person
+$person = new Person;
+...
+$person->passport = $request->myFile;
+$person->save();
+echo $person->passport->url;
+
+
 
 // Delete Files
 $person->delete(); 				// Delete Person with all related files
