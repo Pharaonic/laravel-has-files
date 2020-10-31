@@ -4,6 +4,13 @@ namespace Pharaonic\Laravel\Files;
 
 use Exception;
 
+/**
+ * Has Files Trait
+ *
+ * @version 1.0
+ * @author Raggi <support@pharaonic.io>
+ * @license http://opensource.org/licenses/mit-license.php MIT License
+ */
 trait HasFiles
 {
     /**

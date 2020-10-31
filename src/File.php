@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Pharaonic\Laravel\Uploader\Upload;
 
+/**
+ * File Model
+ *
+ * @version 1.0
+ * @author Raggi <support@pharaonic.io>
+ * @license http://opensource.org/licenses/mit-license.php MIT License
+ */
 class File extends Model
 {
     use HasFactory;
