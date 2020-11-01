@@ -28,7 +28,7 @@ class FilesServiceProvider extends ServiceProvider
         // Publishes
         $this->publishes([
             __DIR__ . '/config/files.php'                       => config_path('Pharaonic/files.php'),
-            __DIR__ . '/database/migrations/files.stub'         => database_path(sprintf('migrations/%s_create_files_table.php',          date('Y_m_d_His', time()))),
+            __DIR__ . '/database/migrations/files.stub'         => database_path(sprintf('migrations/%s_create_files_table.php',          date('Y_m_d_His', time() + 3))),
         ], ['pharaonic', 'laravel-has-files']);
 
         // Loads
