@@ -20,6 +20,18 @@ trait HasFiles
      */
     protected static $filesAttributesAction = [];
 
+    /**
+     * @return void
+     */
+    public function initializeHasFiles()
+    {
+        $attrs = get_class_vars(self::class);
+        $attrs = array_merge(config('Pharaonic.files.fields', []), $attrs['filesAttributes'] ?? []);
+
+        foreach ($attrs as $attr)
+            $this->fillable[] = $attr;
+    }
+
     protected static function bootHasFiles()
     {
         $attrs = get_class_vars(self::class);
