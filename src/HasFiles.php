@@ -3,6 +3,7 @@
 namespace Pharaonic\Laravel\Files;
 
 use Exception;
+use Illuminate\Http\UploadedFile;
 
 /**
  * Has Files Trait
@@ -51,7 +52,8 @@ trait HasFiles
         self::created(function ($model) {
             if (count(self::$filesAttributesAction) > 0) {
                 foreach (self::$filesAttributesAction as $name => $file)
-                    $model->setAttribute($name, $model->_setFileAttribute($name, $file));
+                    if ($file instanceof UploadedFile)
+                        $model->setAttribute($name, $model->_setFileAttribute($name, $file));
             }
         });
 
