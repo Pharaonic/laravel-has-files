@@ -2,7 +2,6 @@
 
 namespace Pharaonic\Laravel\Files;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Pharaonic\Laravel\Uploader\Upload;
 
@@ -15,7 +14,6 @@ use Pharaonic\Laravel\Uploader\Upload;
  */
 class File extends Model
 {
-    use HasFactory;
 
     /**
      * Fillable Columns
