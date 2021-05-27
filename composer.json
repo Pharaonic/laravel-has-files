@@ -1,18 +1,17 @@
 {
     "name": "pharaonic/laravel-has-files",
-    "description": "Laravel - Model's files like Image, Picture, Cover, Thumbnail, Video, Audio, file, ...etc.",
+    "description": "Laravel - Model's files like Image, Picture, Cover, Video, Audio, file, ...etc.",
     "keywords": [
-        "php",
+        "laravel files",
+        "laravel upload",
         "laravel",
-        "has files",
-        "pharaonic"
+        "php"
     ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Raggi",
-            "email": "support@pharaonic.io",
-            "homepage": "https://pharaonic.io"
+            "name": "Moamen Eltouny (Raggi)",
+            "email": "raggi@raggitech.com"
         }
     ],
     "require": {

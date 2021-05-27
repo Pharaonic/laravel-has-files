@@ -8,9 +8,8 @@ use Illuminate\Http\UploadedFile;
 /**
  * Has Files Trait
  *
- * @version 1.0
- * @author Raggi <support@pharaonic.io>
- * @license http://opensource.org/licenses/mit-license.php MIT License
+ * @version 2.0
+ * @author Moamen Eltouny (Raggi) <raggi@raggitech.com>
  */
 trait HasFiles
 {

@@ -8,9 +8,8 @@ use Pharaonic\Laravel\Uploader\Upload;
 /**
  * File Model
  *
- * @version 1.0
- * @author Raggi <support@pharaonic.io>
- * @license http://opensource.org/licenses/mit-license.php MIT License
+ * @version 2.0
+ * @author Moamen Eltouny (Raggi) <raggi@raggitech.com>
  */
 class File extends Model
 {

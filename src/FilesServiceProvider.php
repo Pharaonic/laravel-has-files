@@ -15,7 +15,10 @@ class FilesServiceProvider extends ServiceProvider
     public function register()
     {
         // Config Merge
-        $this->mergeConfigFrom(__DIR__ . '/config/files.php', ['pharaonic', 'laravel-has-files']);
+        $this->mergeConfigFrom(__DIR__ . '/config/files.php', 'laravel-has-files');
+
+        // Migration Loading
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
     /**
@@ -27,11 +30,9 @@ class FilesServiceProvider extends ServiceProvider
     {
         // Publishes
         $this->publishes([
-            __DIR__ . '/config/files.php'                       => config_path('Pharaonic/files.php'),
-            __DIR__ . '/database/migrations/files.stub'         => database_path(sprintf('migrations/%s_create_files_table.php',          date('Y_m_d_His', time() + 3))),
+            __DIR__ . '/config/files.php'                                       => config_path('Pharaonic/files.php'),
+            __DIR__ . '/database/migrations/2021_02_01_000003_files_table.php' => database_path('migrations/2021_02_01_000003_files_table.php'),
         ], ['pharaonic', 'laravel-has-files']);
 
-        // Loads
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }

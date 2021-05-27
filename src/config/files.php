@@ -1,7 +1,7 @@
 <?php
 return [
     'fields'    => [
-        'image', 'picture', 'cover', 'thumbnail', 
+        'image', 'picture', 'cover',
         'video', 'audio', 
         'file'
     ]
