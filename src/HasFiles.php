@@ -4,6 +4,7 @@ namespace Pharaonic\Laravel\Files;
 
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Pharaonic\Laravel\Helpers\Traits\HasCustomAttributes;
 
 /**
  * Has Files Trait
@@ -13,6 +14,7 @@ use Illuminate\Http\UploadedFile;
  */
 trait HasFiles
 {
+    use HasCustomAttributes;
     /**
      * Files Atrributes on Save/Create
      *
