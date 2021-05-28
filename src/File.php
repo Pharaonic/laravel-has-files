@@ -28,6 +28,26 @@ class File extends Model
     {
         return $this->belongsTo(Upload::class, 'upload_id');
     }
+    
+    /**
+     * Get Url Directly
+     *
+     * @return string
+     */
+    public function getUrlAttribute()
+    {
+        return $this->file->url;
+    }
+
+    /**
+     * Get Thumbnail
+     *
+     * @return string
+     */
+    public function getThumbnailAttribute()
+    {
+        return $this->file->thumbnail ?? null;
+    }
 
     /**
      * Get the owning model.
