@@ -148,6 +148,9 @@ trait HasFiles
     public function clearFiles()
     {
         foreach ($this->files()->get() as $file) {
+            if ($thumb = $file->file->thumbnail)
+                $thumb->delete();
+
             $file->file->delete();
         }
     }
