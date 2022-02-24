@@ -86,7 +86,7 @@ trait HasFiles
             } else {
                 $file = $this->files();
 
-                if (isset($this->filesOptions) && isset($this->filesOptions[$key]) && $this->filesOptions[$key]['thumbnail'])
+                if (isset($this->filesOptions) && isset($this->filesOptions[$key]) && isset($this->filesOptions[$key]['thumbnail']))
                     $file = $file->with('file.thumbnail');
             }
 
