@@ -81,7 +81,17 @@ trait HasFiles
     public function _getFileAttribute($key)
     {
         if ($this->isFileAttribute($key)) {
-            $file = $this->files()->where('field', $key)->first();
+            if ($this->relationLoaded('files')) {
+                $file = $this->files;
+            } else {
+                $file = $this->files();
+
+                if (isset($this->filesOptions) && isset($this->filesOptions[$key]) && $this->filesOptions[$key]['thumbnail'])
+                    $file = $file->with('file.thumbnail');
+            }
+
+            $file = $this->relationLoaded('files') ? $this->files : $this->files();
+            $file = $file->where('field', $key)->first();
             return $file ? $file->file : null;
         }
     }
@@ -148,9 +158,6 @@ trait HasFiles
     public function clearFiles()
     {
         foreach ($this->files()->get() as $file) {
-            if ($thumb = $file->file->thumbnail)
-                $thumb->delete();
-
             $file->file->delete();
         }
     }
