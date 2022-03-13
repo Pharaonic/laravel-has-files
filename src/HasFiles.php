@@ -15,6 +15,7 @@ use Pharaonic\Laravel\Helpers\Traits\HasCustomAttributes;
 trait HasFiles
 {
     use HasCustomAttributes;
+    
     /**
      * Files Atrributes on Save/Create
      *
@@ -149,7 +150,13 @@ trait HasFiles
      */
     public function files()
     {
-        return $this->morphMany(File::class, 'model');
+        $hasThumbnails = false;
+        
+        foreach ($this->filesOptions ?? [] as $options)
+            if (isset($options['thumbnail']))
+                $hasThumbnails = true;
+
+        return $this->morphMany(File::class, 'model')->with($hasThumbnails ? 'file.thumbnail' : 'file');
     }
 
     /**
