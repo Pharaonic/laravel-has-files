@@ -14,6 +14,21 @@ class FileObserver
      */
     public function deleting(File $file)
     {
-        $file->file->delete();
-    } 
+        $attribute = $file->caller->getAttributables()[$file->field];
+
+        if ($attribute->getOriginal() === $file) {
+            $attribute->reset($attribute->getValue());
+        } else {
+            $attribute->reset(null);
+        }
+
+        $file->caller->setRelation(
+            'files',
+            $file->caller
+                ->files
+                ->filter(fn($f) => $f->field != $file->field)
+        );
+
+        $file->upload->delete();
+    }
 }

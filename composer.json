@@ -16,8 +16,9 @@
     ],
     "require": {
         "php": ">=8.0",
-        "laravel/framework": ">=9.0",
-        "pharaonic/laravel-uploader": "^4.0"
+        "laravel/framework": ">=10.0",
+        "pharaonic/laravel-uploader": "^4.0",
+        "pharaonic/laravel-assistant": "^1.0"
     },
     "autoload": {
         "psr-4": {
