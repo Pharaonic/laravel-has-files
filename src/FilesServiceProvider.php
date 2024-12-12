@@ -3,10 +3,11 @@
 namespace Pharaonic\Laravel\Files;
 
 use Illuminate\Support\ServiceProvider;
+use Pharaonic\Laravel\Files\Models\File;
+use Pharaonic\Laravel\Files\Observers\FileObserver;
 
 class FilesServiceProvider extends ServiceProvider
 {
-
     /**
      * Register services.
      *
@@ -14,11 +15,7 @@ class FilesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Config Merge
-        $this->mergeConfigFrom(__DIR__ . '/config/files.php', 'laravel-has-files');
-
-        // Migration Loading
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     /**
@@ -28,11 +25,12 @@ class FilesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Observers
+        File::observe(FileObserver::class);
+
         // Publishes
         $this->publishes([
-            __DIR__ . '/config/files.php'                                       => config_path('Pharaonic/files.php'),
-            __DIR__ . '/database/migrations/2021_02_01_000003_create_files_table.php' => database_path('migrations/2021_02_01_000003_create_files_table.php'),
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], ['pharaonic', 'laravel-has-files']);
-
     }
 }
