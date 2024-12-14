@@ -26,7 +26,7 @@ class FilesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // About
+        // Information
         AboutCommand::add('Pharaonic', fn() => ['Has Files' => '3.x']);
 
         // Observers
