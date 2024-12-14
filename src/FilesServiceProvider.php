@@ -2,6 +2,7 @@
 
 namespace Pharaonic\Laravel\Files;
 
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 use Pharaonic\Laravel\Files\Models\File;
 use Pharaonic\Laravel\Files\Observers\FileObserver;
@@ -25,6 +26,9 @@ class FilesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // About
+        AboutCommand::add('Pharaonic', fn() => ['Has Files' => '3.x']);
+
         // Observers
         File::observe(FileObserver::class);
 
