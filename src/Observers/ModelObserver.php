@@ -20,7 +20,7 @@ class ModelObserver
             }
 
             $upload = upload(
-                $attribute->get(),
+                $attribute->getValue(),
                 $model->getFileOptions($attribute->getName())
             );
 
